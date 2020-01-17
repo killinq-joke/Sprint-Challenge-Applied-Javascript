@@ -49,30 +49,42 @@ function Carousel() {
   rightBtn.textContent = '>';
 
   
-  const carouselImgs = [img1, img2, im3, img4];
+  const carouselImgs = [img1, img2, img3, img4];
 
   const totalImgs = carouselImgs.length;
 
   let i = 0;
 
-  console.log(carouselImgs);
-  //  carouselImgs.forEach((img) => {
-  //   img.style.display = 'none';
-  // });
-  // carouselImgs[i].style.display = 'block';
+  carouselImgs.forEach((img) => {
+    img.style.display = 'none';
+  });
+carouselImgs[i].style.display = 'block';
 
-  // const changeImg = (changeIndex) => {
+  const changeImg = (changeIndex) => {
+    // console.log(carouselImgs);
     
     
-  //   console.log(i)
-  //   if (i === 0 && changeIndex === -1) {
-  //       i = totalImgs - 1; 
-  //   } else if (i === (totalImgs - 1) && changeIndex === 1) {
-  //     i = 0;
-  //   } else {
-  //       i += changeIndex;
-  //   }
-  // }
+    console.log(i)
+    if (i === 0 && changeIndex === -1) {
+        i = totalImgs - 1; 
+        carouselImgs.forEach((img) => {
+          img.style.display = 'none';
+        });
+      carouselImgs[i].style.display = 'block';
+    } else if (i === (totalImgs - 1) && changeIndex === 1) {
+      i = 0;
+      carouselImgs.forEach((img) => {
+        img.style.display = 'none';
+      });
+    carouselImgs[i].style.display = 'block';
+    } else {
+        i += changeIndex;
+        carouselImgs.forEach((img) => {
+          img.style.display = 'none';
+        });
+      carouselImgs[i].style.display = 'block';
+    }
+  }
 
   leftBtn.addEventListener('click',  () => changeImg(-1));
   rightBtn.addEventListener('click', () => changeImg(1));
