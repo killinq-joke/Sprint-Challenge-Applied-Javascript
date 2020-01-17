@@ -26,7 +26,7 @@ function Carousel() {
   const img3 = document.createElement('img');
   const img4 = document.createElement('img');
   const rightBtn = document.createElement('div');
-  const imgArr = [img1, img2, img3, img4];
+
 
 
   carousel.append(leftBtn);
@@ -38,10 +38,7 @@ function Carousel() {
 
   carousel.classList.add('carousel');
   leftBtn.classList.add('left-button');
-  img1.classList.add('display-none');
-  img2.classList.add('display-none');
-  img3.classList.add('display-none');
-  img4.classList.add('display-none');
+
   rightBtn.classList.add('right-button');
 
   leftBtn.textContent = '<';
@@ -51,31 +48,34 @@ function Carousel() {
   img4.src = "./assets/carousel/turntable.jpeg";
   rightBtn.textContent = '>';
 
-  let i = 1;
-  leftBtn.addEventListener('click', event => {
-    if (i !== imgArr.length) {
-      imgArr[imgArr.length - i].classList.remove('display-none');
-      imgArr[imgArr.length - i - 1].classList.add('display-none');
-    } else {
-      imgArr[i].classList.add('display-none');
-      i === 1;
-      imgArr[i].classList.remove('display-none');
-    }
-    i--;
-  })
+  
+  const carouselImgs = [img1, img2, im3, img4];
 
-  rightBtn.addEventListener('click', event => {
-    console.log('brooh');
-    if (i !== imgArr.length) {
-      imgArr[i].classList.remove('display-none');
-      imgArr[i - 1].classList.add('display-none');
-    } else {
-      imgArr[i].classList.add('display-none');
-      i === 1;
-      imgArr[i].classList.remove('display-none');
-    }
-    i++;
-  })
+  const totalImgs = carouselImgs.length;
+
+  let i = 0;
+
+  console.log(carouselImgs);
+  //  carouselImgs.forEach((img) => {
+  //   img.style.display = 'none';
+  // });
+  // carouselImgs[i].style.display = 'block';
+
+  // const changeImg = (changeIndex) => {
+    
+    
+  //   console.log(i)
+  //   if (i === 0 && changeIndex === -1) {
+  //       i = totalImgs - 1; 
+  //   } else if (i === (totalImgs - 1) && changeIndex === 1) {
+  //     i = 0;
+  //   } else {
+  //       i += changeIndex;
+  //   }
+  // }
+
+  leftBtn.addEventListener('click',  () => changeImg(-1));
+  rightBtn.addEventListener('click', () => changeImg(1));
 
   return carousel;
 }
