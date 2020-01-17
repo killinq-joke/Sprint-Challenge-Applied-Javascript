@@ -28,7 +28,6 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
         topics.append(Tab(dataArg))
     })
     
-
 }).catch(error => {
     console.log(error);
 })
