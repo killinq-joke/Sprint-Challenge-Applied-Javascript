@@ -17,3 +17,70 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+function Carousel() {
+  const carousel = document.createElement('div');
+  const leftBtn = document.createElement('div');
+  const img1 = document.createElement('img');
+  const img2 = document.createElement('img');
+  const img3 = document.createElement('img');
+  const img4 = document.createElement('img');
+  const rightBtn = document.createElement('div');
+  const imgArr = [img1, img2, img3, img4];
+
+
+  carousel.append(leftBtn);
+  carousel.append(img1);
+  carousel.append(img2);
+  carousel.append(img3);
+  carousel.append(img4);
+  carousel.append(rightBtn);
+
+  carousel.classList.add('carousel');
+  leftBtn.classList.add('left-button');
+  img1.classList.add('display-none');
+  img2.classList.add('display-none');
+  img3.classList.add('display-none');
+  img4.classList.add('display-none');
+  rightBtn.classList.add('right-button');
+
+  leftBtn.textContent = '<';
+  img1.src = "./assets/carousel/mountains.jpeg";
+  img2.src = "./assets/carousel/computer.jpeg";
+  img3.src = "./assets/carousel/trees.jpeg";
+  img4.src = "./assets/carousel/turntable.jpeg";
+  rightBtn.textContent = '>';
+
+  let i = 1;
+  leftBtn.addEventListener('click', event => {
+    if (i !== imgArr.length) {
+      imgArr[imgArr.length - i].classList.remove('display-none');
+      imgArr[imgArr.length - i - 1].classList.add('display-none');
+    } else {
+      imgArr[i].classList.add('display-none');
+      i === 1;
+      imgArr[i].classList.remove('display-none');
+    }
+    i--;
+  })
+
+  rightBtn.addEventListener('click', event => {
+    console.log('brooh');
+    if (i !== imgArr.length) {
+      imgArr[i].classList.remove('display-none');
+      imgArr[i - 1].classList.add('display-none');
+    } else {
+      imgArr[i].classList.add('display-none');
+      i === 1;
+      imgArr[i].classList.remove('display-none');
+    }
+    i++;
+  })
+
+  return carousel;
+}
+
+const carousels = document.querySelector('.carousel-container');
+carousels.append(Carousel());
+console.log(Carousel());
+
