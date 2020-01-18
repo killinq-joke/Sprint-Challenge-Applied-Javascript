@@ -17,3 +17,82 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+function Carousel() {
+  const carousel = document.createElement('div');
+  const leftBtn = document.createElement('div');
+  const img1 = document.createElement('img');
+  const img2 = document.createElement('img');
+  const img3 = document.createElement('img');
+  const img4 = document.createElement('img');
+  const rightBtn = document.createElement('div');
+
+
+
+  carousel.append(leftBtn);
+  carousel.append(img1);
+  carousel.append(img2);
+  carousel.append(img3);
+  carousel.append(img4);
+  carousel.append(rightBtn);
+
+  carousel.classList.add('carousel');
+  leftBtn.classList.add('left-button');
+
+  rightBtn.classList.add('right-button');
+
+  leftBtn.textContent = '<';
+  img1.src = "./assets/carousel/mountains.jpeg";
+  img2.src = "./assets/carousel/computer.jpeg";
+  img3.src = "./assets/carousel/trees.jpeg";
+  img4.src = "./assets/carousel/turntable.jpeg";
+  rightBtn.textContent = '>';
+
+  
+  const carouselImgs = [img1, img2, img3, img4];
+
+  const totalImgs = carouselImgs.length;
+
+  let i = 0;
+
+  carouselImgs.forEach((img) => {
+    img.style.display = 'none';
+  });
+carouselImgs[i].style.display = 'block';
+
+  const changeImg = (changeIndex) => {
+    // console.log(carouselImgs);
+    
+    
+    console.log(i)
+    if (i === 0 && changeIndex === -1) {
+        i = totalImgs - 1; 
+        carouselImgs.forEach((img) => {
+          img.style.display = 'none';
+        });
+      carouselImgs[i].style.display = 'block';
+    } else if (i === (totalImgs - 1) && changeIndex === 1) {
+      i = 0;
+      carouselImgs.forEach((img) => {
+        img.style.display = 'none';
+      });
+    carouselImgs[i].style.display = 'block';
+    } else {
+        i += changeIndex;
+        carouselImgs.forEach((img) => {
+          img.style.display = 'none';
+        });
+      carouselImgs[i].style.display = 'block';
+    }
+  }
+
+  leftBtn.addEventListener('click',  () => changeImg(-1));
+  rightBtn.addEventListener('click', () => changeImg(1));
+
+  return carousel;
+}
+
+const carousels = document.querySelector('.carousel-container');
+carousels.append(Carousel());
+console.log(Carousel());
+
